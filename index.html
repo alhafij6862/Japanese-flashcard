@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>জাপানিজ ফ্ল্যাশকার্ড</title>
+  <meta name="theme-color" content="#bc002d">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>জাপানিজ শব্দ শিখি</h1>
+
+    <div class="tabs">
+      <button id="tab-quiz" class="tab active">কুইজ</button>
+      <button id="tab-flash" class="tab">ফ্ল্যাশকার্ড</button>
+    </div>
+
+    <!-- কুইজ মোড -->
+    <section id="quiz">
+      <p id="quiz-score" class="counter"></p>
+      <div class="qcard">
+        <div id="quiz-jp" class="jp"></div>
+      </div>
+      <div id="options" class="options"></div>
+    </section>
+
+    <!-- ফ্ল্যাশকার্ড মোড -->
+    <section id="flash" hidden>
+      <p id="counter" class="counter"></p>
+      <div id="card" class="card" tabindex="0">
+        <div class="card-inner">
+          <div class="face front">
+            <div id="jp" class="jp"></div>
+            <small>ট্যাপ করে মানে দেখুন</small>
+          </div>
+          <div class="face back">
+            <div id="meaning" class="meaning"></div>
+            <div id="pron" class="pron"></div>
+          </div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button id="unknown" class="btn no">জানি না</button>
+        <button id="known" class="btn yes">জানি</button>
+      </div>
+    </section>
+
+    <button id="reset" class="reset">প্রগতি রিসেট করুন</button>
+  </main>
+
+  <!-- সঠিক / ভুল পপ-আপ -->
+  <div id="popup" class="popup" hidden>
+    <div class="popup-box">
+      <div id="popup-emoji" class="popup-emoji"></div>
+      <div id="popup-text" class="popup-text"></div>
+      <div id="popup-sub" class="popup-sub"></div>
+    </div>
+    <div id="confetti" class="confetti"></div>
+  </div>
+
+  <script src="words.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Service Worker চালু করা (শুধু HTTPS বা localhost-এ কাজ করে)
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
